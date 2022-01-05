@@ -7,8 +7,11 @@ Il faut télécharger le fichier "caltus124_webshell.php" sur un serveur sible c
 Composition de la page:
 
 -Nom de l'OS du serveur(Linux ou Windows).
--Webshell
+
+-Webshell.
+
 -List d'informations sur le serveur sible.
+
 
 'PHP_SELF',
 'argv',
