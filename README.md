@@ -53,3 +53,9 @@ Composition de la page:
 'AUTH_TYPE',
 'PATH_INFO',
 'ORIG_PATH_INFO'.
+
+![Screenshot_2022-01-05_23_27_09](https://user-images.githubusercontent.com/97174067/148298477-dce15878-9184-4c6d-9148-b6ce5eff67b1.png)
+
+
+
+
