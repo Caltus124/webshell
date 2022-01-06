@@ -1,4 +1,5 @@
 <?php
+session_start();
 $version = "1.0.1";
 $date = date("Y-m-d H:i:s");
 $indicesServer = array('PHP_SELF',
@@ -65,25 +66,23 @@ if (empty($_GET['cmd'])) {
 	}
 }
 if ($_GET['cmd'] === "color 1") {
-	$color = "#0080FF";
+	$_SESSION['color']= "#0080FF";
 }else if ($_GET['cmd'] === "color 2") {
-	$color = "#24B800";
+	$_SESSION['color'] = "#24B800";
 }else if ($_GET['cmd'] === "color 3") {
-	$color = "#2DECFF";
+	$_SESSION['color'] = "#2DECFF";
 }else if ($_GET['cmd'] === "color 4") {
-	$color = "#FF4C4C";
+	$_SESSION['color'] = "#FF4C4C";
 }else if ($_GET['cmd'] === "color 5") {
-	$color = "#F14CFF";
+	$_SESSION['color'] = "#F14CFF";
 }else if ($_GET['cmd'] === "color 6") {
-	$color = "#F0EC20";
+	$_SESSION['color'] = "#F0EC20";
 }else if ($_GET['cmd'] === "color 7") {
-	$color = "#C2C2C2";
+	$_SESSION['color'] = "#C2C2C2";
 }else if ($_GET['cmd'] === "color 8") {
-	$color = "#FFB200";
+	$_SESSION['color'] = "#FFB200";
 }else if ($_GET['cmd'] === "color 0") {
-	$color = "White";
-}else{
-	$color = "White";
+	$_SESSION['color'] = "White";
 }
 if ($_GET['cmd'] === "help") {
 	$help = "help";
@@ -151,7 +150,7 @@ if ($_GET['cmd'] === "help") {
 		min-height: 650px;
 
 		background-color: black;
-		color: <?php echo $color;?>;
+		color: <?php echo $_SESSION['color'];?>;
 
 	}
 
@@ -240,6 +239,3 @@ if ($_GET['cmd'] === "help") {
 </main>
 </body>
 </html>
-
-
-
